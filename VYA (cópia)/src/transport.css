@@ -1,0 +1,7 @@
+/* Seletor de tipo de locomoção (carro, moto, bicicleta, a pé) */
+.transport-picker{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:0 0 22px}
+.transport-picker>button{display:flex;flex-direction:column;align-items:center;gap:7px;padding:12px 4px;background:var(--canvas);border:1px solid var(--border);border-radius:13px;color:#9686b3;font-size:9px;font-weight:650}
+.transport-picker>button:hover:not(:disabled){background:#f1eeff}
+.transport-picker>button.active{background:var(--purple);border-color:var(--purple);color:white;box-shadow:0 8px 18px #5b4bff2b}
+.transport-picker>button:disabled{cursor:wait;opacity:.6}
+.transport-label{display:flex;align-items:center;gap:7px;font-size:9px;font-weight:650;color:var(--purple);background:#f1eeff;padding:6px 10px;border-radius:7px}

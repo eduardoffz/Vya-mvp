@@ -44,3 +44,779 @@ html, body {
     -ms-overflow-style: none;  /* IE and Edge */
     scrollbar-width: none;  /* Firefox */
 }
+
+
+/* ==========================================================================
+   Sprint 2 Features
+   ========================================================================== */
+
+/* 1. Login/Register Screens (auth flow) */
+.auth-card-login,
+.auth-card-register {
+  width: 100%;
+  max-width: 385px;
+  margin: auto;
+  animation: enter 0.35s ease-out;
+}
+
+.auth-app .auth-card-login,
+.auth-app .auth-card-register {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  animation: mobile-sheet-enter 0.4s ease-out;
+}
+
+.google-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  padding: 15px 19px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 650;
+  color: var(--night);
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(20, 17, 46, 0.05);
+  transition: background 0.2s, border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  min-height: 53px;
+}
+
+.google-button:hover {
+  background: #fdfdfd;
+  border-color: #d8d4e5;
+  box-shadow: 0 4px 12px rgba(20, 17, 46, 0.08);
+}
+
+.google-button:active {
+  transform: scale(0.98);
+}
+
+.google-button svg,
+.google-button img {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+}
+
+.auth-app .google-button {
+  border-radius: 16px;
+  min-height: 56px;
+}
+
+.auth-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--muted);
+  font-size: 11px;
+  font-weight: 500;
+  margin: 20px 0;
+  text-transform: lowercase;
+}
+
+.auth-divider::before,
+.auth-divider::after {
+  content: "";
+  flex: 1;
+  border-bottom: 1px solid var(--border);
+}
+
+.auth-divider::before {
+  margin-right: 14px;
+}
+
+.auth-divider::after {
+  margin-left: 14px;
+}
+
+.auth-form .input-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.auth-form .input-group label {
+  font-size: 11px;
+  font-weight: 650;
+  color: var(--night);
+}
+
+.auth-form .input-group .input-wrap {
+  margin-top: 9px;
+}
+
+/* 2. Category Filter Chips */
+.category-chips {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 0;
+  -webkit-overflow-scrolling: touch;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.category-chips::-webkit-scrollbar {
+  display: none;
+}
+
+.category-chip {
+  padding: 8px 14px;
+  border-radius: 20px;
+  font-size: 9px;
+  font-weight: 600;
+  background: #f2eff9;
+  color: #9686b3;
+  white-space: nowrap;
+  border: 1px solid transparent;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.category-chip:hover {
+  background: #e9e5f3;
+}
+
+.category-chip:active {
+  transform: scale(0.96);
+}
+
+.category-chip.active {
+  background: #eae6ff;
+  color: var(--purple);
+  border-color: var(--purple);
+}
+
+/* 3. Home/Work Shortcuts */
+.shortcuts-row {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.shortcut-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px;
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 13px;
+  text-align: left;
+  cursor: pointer;
+  min-width: 0;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+
+.shortcut-btn:hover {
+  background: var(--canvas);
+}
+
+.shortcut-btn:active {
+  transform: scale(0.98);
+}
+
+.shortcut-btn .shortcut-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  border-radius: 11px;
+  color: white;
+  flex-shrink: 0;
+  background: #4caf50;
+}
+
+.shortcut-btn.home .shortcut-icon,
+.shortcut-btn[data-type="home"] .shortcut-icon,
+.shortcut-btn .shortcut-icon.home {
+  background: #4caf50;
+}
+
+.shortcut-btn.work .shortcut-icon,
+.shortcut-btn[data-type="work"] .shortcut-icon,
+.shortcut-btn .shortcut-icon.work {
+  background: #ff9800;
+}
+
+.shortcut-btn > div:not(.shortcut-icon),
+.shortcut-btn .shortcut-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.shortcut-btn strong {
+  display: block;
+  font-size: 11px;
+  color: var(--night);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.shortcut-btn small {
+  display: block;
+  font-size: 9px;
+  color: var(--muted);
+  margin-top: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.shortcut-modal,
+.shortcut-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 17, 46, 0.45);
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  animation: modal-fade-in 0.2s ease-out;
+  backdrop-filter: blur(4px);
+}
+
+.shortcut-modal-card {
+  background: white;
+  border-radius: 20px;
+  padding: 28px;
+  max-width: 380px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(20, 17, 46, 0.2);
+  animation: modal-card-in 0.25s ease-out;
+}
+
+/* 4. Route Alternatives */
+.route-alternatives {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 16px 0;
+}
+
+.route-alt-card {
+  padding: 14px 16px;
+  border: 2px solid var(--border);
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  cursor: pointer;
+  background: white;
+  transition: all 0.2s;
+  text-align: left;
+}
+
+.route-alt-card:hover {
+  border-color: #ded9e9;
+}
+
+.route-alt-card.selected {
+  border-color: var(--purple);
+  background: #f5f2ff;
+}
+
+.route-alt-color {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--purple);
+}
+
+.route-alt-card .route-alt-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.route-alt-card .route-alt-info strong {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--night);
+}
+
+.route-alt-card .route-alt-info small {
+  display: block;
+  font-size: 9px;
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+.route-alt-card .route-alt-badge,
+.route-alt-badge {
+  font-size: 8px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
+
+.route-alt-badge.fastest {
+  background: #f0f7df;
+  color: #819553;
+}
+
+/* 5. Route Preferences (Toll/Unpaved toggles) */
+.route-preferences {
+  margin: 16px 0;
+  padding: 16px;
+  background: var(--canvas);
+  border-radius: 13px;
+}
+
+.route-pref-title {
+  font-size: 10px;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--night);
+}
+
+.route-pref-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+
+.route-pref-row:first-child,
+.route-pref-row:not(:last-child) {
+  border-bottom: 1px solid var(--border);
+}
+
+.route-pref-row span {
+  font-size: 10px;
+  color: #716983;
+}
+
+.toggle-switch {
+  width: 42px;
+  height: 24px;
+  border-radius: 12px;
+  background: #d8d4e2;
+  position: relative;
+  cursor: pointer;
+  transition: background 0.2s;
+  border: 0;
+  padding: 0;
+  outline: none;
+  flex-shrink: 0;
+}
+
+.toggle-switch.active {
+  background: var(--purple);
+}
+
+.toggle-switch::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background: white;
+  top: 2px;
+  left: 2px;
+  transition: transform 0.2s;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+}
+
+.toggle-switch.active::after {
+  transform: translateX(18px);
+}
+
+/* 6. Toll Info Display */
+.toll-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px;
+  background: #fef8e8;
+  border: 1px solid #f5e6b8;
+  border-radius: 11px;
+  margin: 12px 0;
+}
+
+.toll-info .toll-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  background: #f5e6b8;
+  border-radius: 9px;
+  color: #b8960a;
+  flex-shrink: 0;
+}
+
+.toll-info > div,
+.toll-info .toll-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.toll-info strong {
+  display: block;
+  font-size: 11px;
+  color: var(--night);
+}
+
+.toll-info small {
+  display: block;
+  font-size: 9px;
+  color: #b8960a;
+  margin-top: 2px;
+}
+
+/* 7. Report Button & Modal (during navigation) */
+.report-fab-wrapper,
+.report-container {
+  position: absolute;
+  bottom: 70px;
+  right: 16px;
+  z-index: 10;
+}
+
+.report-fab {
+  position: absolute;
+  bottom: 70px;
+  right: 16px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 16px;
+  background: var(--night);
+  color: white;
+  border-radius: 50px;
+  font-size: 10px;
+  font-weight: 600;
+  box-shadow: 0 8px 24px rgba(20, 17, 46, 0.25);
+  border: 0;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.report-fab-wrapper .report-fab,
+.report-container .report-fab {
+  position: static;
+}
+
+.report-fab:hover {
+  background: #2a2548;
+}
+
+.report-fab:active {
+  transform: scale(0.96);
+}
+
+.report-options {
+  position: absolute;
+  bottom: 56px;
+  right: 0;
+  background: white;
+  border-radius: 14px;
+  padding: 8px;
+  box-shadow: 0 12px 40px rgba(20, 17, 46, 0.18);
+  min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  z-index: 11;
+  animation: modal-card-in 0.2s ease-out;
+}
+
+.report-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px;
+  border-radius: 10px;
+  width: 100%;
+  background: white;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--night);
+  border: 0;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.2s;
+}
+
+.report-option:hover {
+  background: var(--canvas);
+}
+
+.report-option .report-dot,
+.report-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.report-dot.warning,
+.report-option.warning .report-dot,
+.report-option[data-type="warning"] .report-dot {
+  background: #ff9800;
+}
+
+.report-dot.accident,
+.report-option.accident .report-dot,
+.report-option[data-type="accident"] .report-dot {
+  background: #f44336;
+}
+
+.report-dot.construction,
+.report-option.construction .report-dot,
+.report-option[data-type="construction"] .report-dot {
+  background: #2196f3;
+}
+
+.report-dot.pothole,
+.report-option.pothole .report-dot,
+.report-option[data-type="pothole"] .report-dot {
+  background: #795548;
+}
+
+/* 8. Navigation Warnings/Toasts */
+.nav-toast {
+  position: absolute;
+  top: 70px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 12;
+  padding: 12px 20px;
+  background: #ff9800;
+  color: white;
+  border-radius: 12px;
+  font-size: 10px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  box-shadow: 0 8px 20px rgba(255, 152, 0, 0.3);
+  animation: toast-in 0.3s ease-out;
+  white-space: nowrap;
+}
+
+.nav-toast.recalculating {
+  background: var(--purple);
+  box-shadow: 0 8px 20px rgba(91, 75, 255, 0.3);
+}
+
+.nav-toast.success {
+  background: #4caf50;
+  box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+}
+
+@keyframes toast-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+/* 9. Waypoints (Stops) */
+.waypoints-section {
+  display: flex;
+  flex-direction: column;
+  margin: 14px 0;
+}
+
+.waypoint-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  font-size: 10px;
+  color: var(--night);
+  border-bottom: 1px solid var(--border);
+}
+
+.waypoint-row:last-child {
+  border-bottom: none;
+}
+
+.waypoint-row > span,
+.waypoint-row .waypoint-name {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.waypoint-dot {
+  width: 10px;
+  height: 10px;
+  background: #ff9800;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.add-stop-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px;
+  width: 100%;
+  background: #f1eeff;
+  color: var(--purple);
+  border-radius: 11px;
+  font-size: 10px;
+  font-weight: 600;
+  margin: 10px 0;
+  border: 0;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+
+.add-stop-btn:hover {
+  background: #e8e2ff;
+}
+
+.add-stop-btn:active {
+  transform: scale(0.98);
+}
+
+/* 10. GPS Modal */
+.gps-modal {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 17, 46, 0.45);
+  z-index: 60;
+  display: grid;
+  place-items: center;
+  padding: 16px;
+  animation: modal-fade-in 0.2s ease-out;
+  backdrop-filter: blur(4px);
+}
+
+.gps-modal-card {
+  background: white;
+  border-radius: 20px;
+  padding: 28px;
+  max-width: 380px;
+  width: 90%;
+  box-shadow: 0 20px 60px rgba(20, 17, 46, 0.2);
+  animation: modal-card-in 0.25s ease-out;
+}
+
+.gps-steps {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+  counter-reset: gps;
+}
+
+.gps-steps li {
+  padding: 10px 0 10px 36px;
+  position: relative;
+  font-size: 11px;
+  color: #716983;
+  border-bottom: 1px solid var(--border);
+  line-height: 1.5;
+}
+
+.gps-steps li:last-child {
+  border-bottom: none;
+}
+
+.gps-steps li::before {
+  counter-increment: gps;
+  content: counter(gps);
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  background: #eae6ff;
+  color: var(--purple);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 10px;
+  font-weight: 700;
+}
+
+/* 11. User Profile Badge (header) */
+.user-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+  position: relative;
+}
+
+.user-badge .user-avatar,
+.user-badge > span:first-child {
+  display: grid;
+  place-items: center;
+  background: var(--purple);
+  color: white;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 11px;
+  font-weight: 700;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.user-badge:hover .user-avatar,
+.user-badge:hover > span:first-child {
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(91, 75, 255, 0.3);
+}
+
+.user-name {
+  font-size: 9px;
+  color: var(--muted);
+  max-width: 80px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: color 0.2s;
+}
+
+.user-badge:hover .user-name {
+  color: var(--night);
+}
+
+/* Modal animation utilities */
+@keyframes modal-fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes modal-card-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96) translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}

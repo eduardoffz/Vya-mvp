@@ -1,11 +1,14 @@
 {
-  "name": "figma-make-app",
+  "name": "vya-figma-plugin",
   "private": true,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build:ui": "vite build",
+    "build:plugin": "esbuild src/plugin/code.ts --bundle --outfile=dist/code.js --target=es2020",
+    "build": "npm run build:ui && npm run build:plugin",
+    "dev:plugin": "esbuild src/plugin/code.ts --bundle --outfile=dist/code.js --target=es2020 --watch",
     "preview": "vite preview",
     "format": "oxfmt"
   },
@@ -14,14 +17,17 @@
     "react-dom": "^19.0.0"
   },
   "devDependencies": {
+    "@figma/plugin-typings": "^1.142.0",
+    "@tailwindcss/vite": "^4.0.0",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
     "@vitejs/plugin-react": "^6.0.0",
-    "tailwindcss": "^4.0.0",
-    "@tailwindcss/vite": "^4.0.0",
+    "esbuild": "^0.28.2",
     "oxfmt": "^0.2.0",
+    "tailwindcss": "^4.0.0",
     "typescript": "^5.7.0",
-    "vite": "^8.0.5"
+    "vite": "^8.0.5",
+    "vite-plugin-singlefile": "^2.3.4"
   }
 }

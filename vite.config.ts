@@ -6,6 +6,7 @@ import tailwindcss from "@tailwindcss/vite"
 
 import path from "node:path"
 
+import { viteSingleFile } from "vite-plugin-singlefile"
 import siteConfiguration from "./.figma/make/site.json"
 
 // Vite config — https://vitejs.dev/config/
@@ -38,6 +39,7 @@ export default defineConfig(({ mode }) => {
       figmaReactRefreshBoundaryFallback(),
 
       figmaMakeKitPlugin({ storiesGlob: "/src/**/*.stories.{ts,tsx,js,jsx}" }),
+      viteSingleFile(),
     ],
 
     resolve: {

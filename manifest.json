@@ -1,0 +1,24 @@
+{
+  "name": "Vya — Navegação Urbana",
+  "id": "vya-navegacao-urbana",
+  "api": "1.0.0",
+  "main": "dist/code.js",
+  "ui": "dist/index.html",
+  "capabilities": [],
+  "enableProposedApi": false,
+  "editorType": [
+    "figma",
+    "figjam",
+    "dev"
+  ],
+  "networkAccess": {
+    "allowedDomains": [
+      "https://*.openstreetmap.org",
+      "https://overpass-api.de",
+      "https://overpass.kumi.systems",
+      "https://router.project-osrm.org",
+      "https://nominatim.openstreetmap.org"
+    ],
+    "reasoning": "Consulta a serviços de mapas, geocodificação e rotas viárias do OpenStreetMap e OSRM"
+  }
+}

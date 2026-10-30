@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from "react"
 import pradoMap from "./prado-map.json"
+import { figmaCreateCanvasFrame, figmaNotify, isRunningInFigma } from "./figmaBridge"
 import {
   calculateStreetRoute,
   calculateStreetRouteAlternatives,
@@ -1245,6 +1246,28 @@ export default function App() {
               : "Prado Ferreira · Paraná"}
         </div>
         <span className="prototype-badge">PROTÓTIPO INTERATIVO</span>
+        <button
+          className="figma-add-frame-btn"
+          onClick={() => {
+            const destDesc = destination ? 'Destino: ' + destination.name : 'Origem: ' + originLabel;
+            figmaCreateCanvasFrame('Tela ' + screen.toUpperCase(), destDesc + ' · Prado Ferreira–PR');
+          }}
+          title="Inserir frame desta tela no canvas do Figma"
+          style={{
+            fontSize: "10px",
+            fontWeight: 700,
+            background: "var(--purple)",
+            color: "white",
+            padding: "5px 9px",
+            borderRadius: "7px",
+            display: "inline-flex",
+            alignItems: "center",
+            gap: "4px",
+            cursor: "pointer"
+          }}
+        >
+          <span>❖ Canvas</span>
+        </button>
         {!isAuth && (
           <button
             className="profile"
